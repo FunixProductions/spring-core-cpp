@@ -10,7 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Add the library
 add_library(FunixProductionsCore STATIC
         src/dto/ApiDTO.cpp
+        src/services/ApiService.cpp
 )
+
+# Add the include directories for the libraries
+# jsonParsing : https://github.com/nlohmann/json
+include_directories(libs)
 
 # Specify the include directories for the library
 target_include_directories(FunixProductionsCore PUBLIC

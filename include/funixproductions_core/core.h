@@ -5,6 +5,7 @@
 #ifndef SPRING_CORE_CPP_CORE_H
 #define SPRING_CORE_CPP_CORE_H
 
-#include "./dto/ApiDTO.h"
+#include "./dtos/ApiDTO.h"
+#include "./services/ApiService.h"
 
 #endif //SPRING_CORE_CPP_CORE_H
