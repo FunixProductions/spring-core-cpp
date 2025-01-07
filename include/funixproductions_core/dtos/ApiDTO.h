@@ -38,8 +38,6 @@ namespace funixproductions_core {
         [[nodiscard]] virtual const nlohmann::json toJson() const;
 
     protected:
-        virtual const void fromJson(const std::string &json);
-
         [[nodiscard]] virtual const std::string convertDateToString(const std::chrono::system_clock::time_point &date) const final;
         [[nodiscard]] virtual const std::chrono::system_clock::time_point convertStringToDate(const std::string &date) const final;
 

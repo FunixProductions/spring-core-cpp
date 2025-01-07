@@ -8,7 +8,19 @@
 namespace funixproductions_core {
 
     ApiDTO::ApiDTO(const std::string &json) {
-        this->fromJson(json);
+        const nlohmann::json jsonObject = nlohmann::json::parse(json);
+
+        if (jsonObject.contains("id")) {
+            this->id = jsonObject["id"].get<std::string>();
+        }
+
+        if (jsonObject.contains("createdAt")) {
+            this->createdAt = this->convertStringToDate(jsonObject["createdAt"].get<std::string>());
+        }
+
+        if (jsonObject.contains("updatedAt")) {
+            this->updatedAt = this->convertStringToDate(jsonObject["updatedAt"].get<std::string>());
+        }
     }
 
     const std::optional<std::string> &ApiDTO::getId() const {
@@ -51,22 +63,6 @@ namespace funixproductions_core {
         }
 
         return json;
-    }
-
-    const void ApiDTO::fromJson(const std::string &json) {
-        nlohmann::json jsonObject = nlohmann::json::parse(json);
-
-        if (jsonObject.contains("id")) {
-            this->id = jsonObject["id"].get<std::string>();
-        }
-
-        if (jsonObject.contains("createdAt")) {
-            this->createdAt = this->convertStringToDate(jsonObject["createdAt"].get<std::string>());
-        }
-
-        if (jsonObject.contains("updatedAt")) {
-            this->updatedAt = this->convertStringToDate(jsonObject["updatedAt"].get<std::string>());
-        }
     }
 
     const std::chrono::system_clock::time_point ApiDTO::convertStringToDate(const std::string &date) const {
