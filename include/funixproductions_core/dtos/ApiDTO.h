@@ -35,10 +35,14 @@ namespace funixproductions_core {
         [[nodiscard]] virtual const std::optional<std::chrono::system_clock::time_point> &getUpdatedAt() const final;
         virtual void setUpdatedAt(const std::optional<std::chrono::system_clock::time_point> &updatedAt) final;
 
-        [[nodiscard]] virtual const nlohmann::json toJson() const;
+        /*
+         *  Call the superclass toJson to add its fields
+            ApiDTO::toJson(json);
+         */
+        virtual void toJson(nlohmann::json &json) const;
 
-    protected:
         [[nodiscard]] virtual const std::string convertDateToString(const std::chrono::system_clock::time_point &date) const final;
+
         [[nodiscard]] virtual const std::chrono::system_clock::time_point convertStringToDate(const std::string &date) const final;
 
     private:

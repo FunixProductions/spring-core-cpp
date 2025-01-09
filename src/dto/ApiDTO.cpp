@@ -47,9 +47,7 @@ namespace funixproductions_core {
         this->updatedAt = updatedAt;
     }
 
-    const nlohmann::json ApiDTO::toJson() const {
-        nlohmann::json json;
-
+    void ApiDTO::toJson(nlohmann::json &json) const {
         if (this->id.has_value()) {
             json["id"] = this->id.value();
         }
@@ -61,8 +59,6 @@ namespace funixproductions_core {
         if (this->updatedAt.has_value()) {
             json["updatedAt"] = this->convertDateToString(this->updatedAt.value());
         }
-
-        return json;
     }
 
     const std::chrono::system_clock::time_point ApiDTO::convertStringToDate(const std::string &date) const {
@@ -76,7 +72,7 @@ namespace funixproductions_core {
 
     const std::string ApiDTO::convertDateToString(const std::chrono::system_clock::time_point &date) const {
         std::time_t time = std::chrono::system_clock::to_time_t(date);
-        std::tm tm = *std::localtime(&time);
+        std::tm tm = *std::gmtime(&time);
 
         std::ostringstream dateStream;
         dateStream << std::put_time(&tm, "%Y-%m-%dT%H:%M:%S");

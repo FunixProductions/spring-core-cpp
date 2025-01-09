@@ -10,8 +10,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Add the library
 add_library(FunixProductionsCore SHARED
         src/dto/ApiDTO.cpp
-        src/dto/PageDTO.cpp
-        src/services/ApiService.cpp
+        src/exceptions/ApiBadRequestException.cpp
+        src/exceptions/ApiException.cpp
+        src/exceptions/ApiForbiddenException.cpp
+        src/exceptions/ApiNotFoundException.cpp
+        src/exceptions/ApiUnauthorizedException.cpp
 )
 
 target_include_directories(FunixProductionsCore PUBLIC

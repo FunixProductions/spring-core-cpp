@@ -17,13 +17,15 @@ namespace funixproductions_core {
 
             explicit PageDTO(const std::string &json);
 
-            const bool hasNext() const;
-            const bool hasPrevious() const;
+            [[nodiscard]] const std::list<T> &getContent() const;
 
-            const long getTotalElementsDatabase() const;
-            const int getTotalPages() const;
-            const int getActualPage() const;
-            const int getTotalElementsThisPage() const;
+            [[nodiscard]] bool hasNext() const;
+            [[nodiscard]] bool hasPrevious() const;
+
+            [[nodiscard]] const long &getTotalElementsDatabase() const;
+            [[nodiscard]] const int &getTotalPages() const;
+            [[nodiscard]] const int &getActualPage() const;
+            [[nodiscard]] const int &getTotalElementsThisPage() const;
 
         private:
             std::list<T> content;
@@ -34,5 +36,7 @@ namespace funixproductions_core {
     };
 
 }
+
+#include "PageDTO.tpp"
 
 #endif //FUNIXPRODUCTIONSCORE_PAGEDTO_H

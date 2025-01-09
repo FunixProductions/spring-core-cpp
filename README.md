@@ -37,3 +37,9 @@ cmake ..
 cmake --build . --config Release
 cmake --install . --prefix /path/to/install
 ```
+
+## Env variables
+
+```dotenv
+FUNIXPRODUCTIONS_API_TOKEN=your_token
+```
